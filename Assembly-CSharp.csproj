@@ -1,7 +1,7 @@
 ﻿<?xml version="1.0" encoding="utf-8"?>
 <Project ToolsVersion="4.0" DefaultTargets="Build" xmlns="http://schemas.microsoft.com/developer/msbuild/2003">
   <PropertyGroup>
-    <LangVersion>8.0</LangVersion>
+    <LangVersion>latest</LangVersion>
   </PropertyGroup>
   <PropertyGroup>
     <Configuration Condition=" '$(Configuration)' == '' ">Debug</Configuration>
@@ -9,7 +9,7 @@
     <ProductVersion>10.0.20506</ProductVersion>
     <SchemaVersion>2.0</SchemaVersion>
     <RootNamespace></RootNamespace>
-    <ProjectGuid>{32C3BDE6-E125-3128-82C1-25D0441455A3}</ProjectGuid>
+    <ProjectGuid>{DB094ACD-B53D-4B68-1419-A3ABBDF9462F}</ProjectGuid>
     <OutputType>Library</OutputType>
     <AppDesignerFolder>Properties</AppDesignerFolder>
     <AssemblyName>Assembly-CSharp</AssemblyName>
@@ -53,19 +53,20 @@
     <UnityVersion>2020.3.26f1</UnityVersion>
   </PropertyGroup>
   <ItemGroup>
-    <Analyzer Include="C:\Program Files\Microsoft Visual Studio\2022\Community\Common7\IDE\Extensions\Microsoft\Visual Studio Tools for Unity\Analyzers\Microsoft.Unity.Analyzers.dll" />
-  </ItemGroup>
-  <ItemGroup>
     <Compile Include="Assets\Triangle\TriangleScript.cs" />
     <Compile Include="Assets\Scripts\Figure\SquareScript.cs" />
     <Compile Include="Assets\Scripts\Figure\CircleScript.cs" />
     <Compile Include="Assets\Scripts\Figure\Figure.cs" />
     <Compile Include="Assets\Scripts\UI\ResourcesManager.cs" />
-    <Compile Include="Assets\Scripts\Figure\FigureManager.cs" />
+    <Compile Include="Assets\Scripts\Figure\ColorManager.cs" />
     <Compile Include="Assets\Scripts\Constellator.cs" />
     <Compile Include="Assets\Scripts\UI\MenuScript.cs" />
     <Compile Include="Assets\Scripts\ConnectionScript.cs" />
     <Compile Include="Assets\SceneInfo.cs" />
+    <Compile Include="Assets\Scripts\Figure\ConnectionInteractor.cs" />
+    <Compile Include="Assets\Scripts\Figure\InteractorSquare.cs" />
+    <Compile Include="Assets\Triangle\InteractorTriangle.cs" />
+    <Compile Include="Assets\Triangle\TriangleInitializer.cs" />
   </ItemGroup>
   <ItemGroup>
     <Reference Include="UnityEngine">

@@ -5,16 +5,16 @@ public class Constellator : MonoBehaviour
 {
     public SceneInfo level;
     public bool TrianglesEnabled;
-    [SerializeField] Button addTriangles;
     [SerializeField] GameObject SquarePrefab;
     [SerializeField] GameObject CirclePrefab;
-    [SerializeField] GameObject TrianglePrefab;
     [SerializeField] Figure[] SquaresAndCircles;
+
+    public delegate void SpawnExtraFiguresDelegate();
+    public event SpawnExtraFiguresDelegate SpawnExtraFigures;
 
     void Start()
     {
         ArrangeObjects(level);
-        addTriangles.onClick.AddListener(() => { TrianglesEnabled = !TrianglesEnabled; });
     }
     public void ArrangeObjects(SceneInfo level)
     {
@@ -23,7 +23,7 @@ public class Constellator : MonoBehaviour
         Create(CirclePrefab, level.CountCircles);
         Create(SquarePrefab, level.CountSquares);
         SquaresAndCircles = FindObjectsOfType<Figure>();
-        if (TrianglesEnabled) Create(TrianglePrefab, level.CountTriangles);
+        SpawnExtraFigures?.Invoke();
         SetRandomCirclesSize();
         SmartReSize(TrianglesEnabled);
     }
@@ -35,9 +35,10 @@ public class Constellator : MonoBehaviour
         {
             Destroy(figure.gameObject);
         }
+        SquaresAndCircles = null;
     }
 
-    void Create(GameObject prefab, int count)
+    public void Create(GameObject prefab, int count)
     {
         for (int i = 0; i < count; i++)
         {
@@ -48,7 +49,7 @@ public class Constellator : MonoBehaviour
 
     void SmartReSize(bool trianglesEnable)
     {
-        for (int i = 0; i < SquaresAndCircles.Length - level.CountCircles - (trianglesEnable ? level.CountTriangles : 0); i++)
+        for (int i = 0; i < SquaresAndCircles.Length - level.CountCircles - 1; i++)
         {
             if (i + level.CountSquares < SquaresAndCircles.Length)
             {

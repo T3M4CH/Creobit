@@ -10,31 +10,18 @@ public class ConnectionScript : MonoBehaviour
     public delegate void OnReleaseDelegate();
     public event OnReleaseDelegate OnRelease;
 
-    [SerializeField] ResourcesManager resources;
+    public delegate void OnSelectedDelegate(Figure figure);
+    public event OnSelectedDelegate OnSelected;
 
     void ConnectObjects()
     {
-        if (firstFigure.GetFigureType() == "square" && secondFigure.GetFigureType() == "circle")
+        if (firstFigure.GetFigureType() == "circle")
         {
-            if (firstFigure.GetSize() <= secondFigure.GetSize())
-            {
-                firstFigure.transform.SetParent(secondFigure.transform);
-                firstFigure.GetComponent<RectTransform>().anchoredPosition = Vector2.zero;
-                resources.Moves += 1;
-                Destroy(firstFigure.GetComponent<FigureManager>());
-                Destroy(secondFigure.GetComponent<FigureManager>());
-            }
+            ReleaseFigures();
+            return;
         }
-        if (firstFigure.GetFigureType() == "triangle" && secondFigure.GetFigureType() == "square")
-        {
-            CircleScript circle = FindObjectOfType<CircleScript>();
-            if (circle != null)
-            {
-                resources.Energy -= 1;
-                secondFigure.GetComponent<SquareScript>().ChangeSize(circle.GetSize());
-                Destroy(firstFigure.gameObject);
-            }
-        }
+        firstFigure.GetComponent<ConnectionInteractor>().Subscribe();
+        OnSelected.Invoke(secondFigure);
         ReleaseFigures();
     }
     public void CommitObject(Figure figure)
@@ -42,10 +29,11 @@ public class ConnectionScript : MonoBehaviour
         if (firstFigure == null)
         {
             firstObject = figure;
+
         }
         else
         {
-            if (figure == firstFigure)
+            if (figure.GetFigureType() == firstFigure.GetFigureType())
             {
                 ReleaseFigures();
             }

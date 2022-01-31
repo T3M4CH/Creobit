@@ -2,11 +2,18 @@ using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
 
-public abstract class Figure : MonoBehaviour
+public class Figure : MonoBehaviour
 {
-    public abstract string GetFigureType();
+    public virtual string GetFigureType()
+    {
+        return string.Empty;
+    }
 
-    public abstract int GetSize();
+    public virtual int GetSize()
+    {
+        return default;
+    }
 
-    public abstract void ChangeSize(int size);
+    public virtual void ChangeSize(int size) { }
+
 }

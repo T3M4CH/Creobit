@@ -14,6 +14,7 @@ GameObject:
   - component: {fileID: 6825850527112934661}
   - component: {fileID: 4778844812596673826}
   - component: {fileID: 4778844812596673831}
+  - component: {fileID: -4699598072756901183}
   m_Layer: 5
   m_Name: CirclePrefab
   m_TagString: Untagged
@@ -132,3 +133,15 @@ MonoBehaviour:
             m_StringArgument: 
             m_BoolArgument: 0
           m_CallState: 2
+--- !u!114 &-4699598072756901183
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 4947060228843796276}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: b97c565c0f3e8b64aad07e3135949e72, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
