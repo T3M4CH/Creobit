@@ -1,8 +1,6 @@
-using System.Collections;
-using System.Collections.Generic;
 using UnityEngine;
 
-public class InteractorTriangle : ConnectionInteractor
+public class InteractorTriangle : MonoBehaviour, ISelectionResponse
 {
     Figure firstFigure;
     TriangleInitializer resources;
@@ -14,26 +12,18 @@ public class InteractorTriangle : ConnectionInteractor
         connectionScript = FindObjectOfType<ConnectionScript>();
         resources = FindObjectOfType<TriangleInitializer>();
     }
-    public override void Subscribe()
+
+    public void OnSelection(Figure figure)
     {
-        connectionScript.OnSelected += Connection;
-    }
-    public override void Connection(Figure secondFigure)
-    {
-        if (secondFigure.GetFigureType() == "square")
+        if (figure.GetFigureType() == "square" && resources.Energy > 0)
         {
             CircleScript circle = FindObjectOfType<CircleScript>();
             if (circle != null)
             {
                 resources.Energy -= 1;
-                secondFigure.GetComponent<SquareScript>().ChangeSize(circle.GetSize());
+                figure.GetComponent<SquareScript>().ChangeSize(circle.GetSize());
                 Destroy(firstFigure.gameObject);
             }
         }
-        Unsubscribe();
-    }
-    public override void Unsubscribe()
-    {
-        connectionScript.OnSelected -= Connection;
     }
 }

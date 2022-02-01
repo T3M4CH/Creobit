@@ -10,18 +10,9 @@ public class ConnectionScript : MonoBehaviour
     public delegate void OnReleaseDelegate();
     public event OnReleaseDelegate OnRelease;
 
-    public delegate void OnSelectedDelegate(Figure figure);
-    public event OnSelectedDelegate OnSelected;
-
     void ConnectObjects()
     {
-        if (firstFigure.GetFigureType() == "circle")
-        {
-            ReleaseFigures();
-            return;
-        }
-        firstFigure.GetComponent<ConnectionInteractor>().Subscribe();
-        OnSelected.Invoke(secondFigure);
+        firstFigure.GetComponent<ISelectionResponse>().OnSelection(secondFigure);
         ReleaseFigures();
     }
     public void CommitObject(Figure figure)

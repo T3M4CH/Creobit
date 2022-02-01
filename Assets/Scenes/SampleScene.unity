@@ -1153,7 +1153,7 @@ MonoBehaviour:
   m_PrefabInstance: {fileID: 0}
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 1457179008}
-  m_Enabled: 0
+  m_Enabled: 1
   m_EditorHideFlags: 0
   m_Script: {fileID: 11500000, guid: aede01980e139cd4da886386c28b9028, type: 3}
   m_Name: 
@@ -1162,7 +1162,6 @@ MonoBehaviour:
   count: 3
   prefab: {fileID: 7072625441703953085, guid: b158993636385df42a5a391b5f958ddb, type: 3}
   constellator: {fileID: 1457179010}
-  movesText: {fileID: 376501554}
   rect: {fileID: 30543082}
   resources: {fileID: 1341143788}
 --- !u!1 &1475234223

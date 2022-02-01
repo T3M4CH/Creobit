@@ -3,8 +3,11 @@ using UnityEngine.UI;
 
 public class ResourcesManager : MonoBehaviour
 {
-    [SerializeField] Text movesText;
+    public Text movesText;
     [SerializeField] RectTransform rect;
+
+    public delegate void ChangeTextDelegate(Text text);
+    public event ChangeTextDelegate OnChangeEvent;
     int moves;
     public int Moves { get => moves; set { moves = value; ChangeText(); } }
     private void Start()
@@ -15,6 +18,7 @@ public class ResourcesManager : MonoBehaviour
     public void ChangeText()
     {
         movesText.text = $"Moves : {moves}";
+        OnChangeEvent?.Invoke(movesText);
     }
     void SetSize()
     {

@@ -12,9 +12,12 @@ public class ColorManager : MonoBehaviour
     }
     public void SetTransparent(byte alpha)
     {
-        Color32 color = imageComponent.color;
-        color.a = alpha;
-        imageComponent.color = color;
+        if (imageComponent != null)
+        {
+            Color32 color = imageComponent.color;
+            color.a = alpha;
+            imageComponent.color = color;
+        }
     }
 
     public void OnClick()

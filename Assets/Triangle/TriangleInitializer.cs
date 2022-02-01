@@ -11,26 +11,34 @@ public class TriangleInitializer : MonoBehaviour
         {
             energy = value;
             resources.ChangeText();
-            movesText.text += $" , Energy {energy}";
         }
     }
     [SerializeField] int count;
     [SerializeField] GameObject prefab;
     [SerializeField] Constellator constellator;
 
-    [SerializeField] Text movesText;
     [SerializeField] RectTransform rect;
     [SerializeField] ResourcesManager resources;
-    private void Start()
+    private void Awake()
     {
-        resources = FindObjectOfType<ResourcesManager>();
+        resources.OnChangeEvent += ChangeText;
+
         constellator.SpawnExtraFigures += () =>
         {
-            rect.sizeDelta = new Vector2(500, 50);
-            rect.anchoredPosition = new Vector2(300, rect.anchoredPosition.y);
-            movesText.rectTransform.sizeDelta = rect.sizeDelta;
+            ChangeSize();
             constellator.Create(prefab, count);
             Energy = energy;
         };
+    }
+
+    void ChangeSize()
+    {
+        rect.sizeDelta = new Vector2(500, 50);
+        rect.anchoredPosition = new Vector2(300, rect.anchoredPosition.y);
+        resources.movesText.rectTransform.sizeDelta = rect.sizeDelta;
+    }
+    void ChangeText(Text _text)
+    {
+        _text.text += $" , Energy {energy}";
     }
 }
