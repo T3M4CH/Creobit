@@ -3,7 +3,6 @@ using UnityEngine;
 public class Constellator : MonoBehaviour
 {
     public SceneInfo level;
-    public bool TrianglesEnabled;
     [SerializeField] GameObject SquarePrefab;
     [SerializeField] GameObject CirclePrefab;
     [SerializeField] Figure[] SquaresAndCircles;
@@ -46,7 +45,7 @@ public class Constellator : MonoBehaviour
         }
     }
 
-    void SmartReSize(bool trianglesEnable)
+    void SmartReSize()
     {
         for (int i = 0; i < SquaresAndCircles.Length - level.CountCircles - 1; i++)
         {
